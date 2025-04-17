@@ -1,73 +1,72 @@
-# Welcome to your Lovable project
 
-## Project info
+# YouTube Shorts Blocker
 
-**URL**: https://lovable.dev/projects/35799ec6-92e7-4b02-be2d-874ecbb4bcd4
+<p align="center">
+  <img src="public/placeholder-logo.svg" width="128" height="128" alt="YouTube Shorts Blocker Logo">
+</p>
 
-## How can I edit this code?
+<p align="center">
+  <b>Take control of your screen time by blocking YouTube Shorts content</b>
+</p>
 
-There are several ways of editing your application.
+## Overview
 
-**Use Lovable**
+YouTube Shorts Blocker is an Android application that uses accessibility services to detect and block YouTube Shorts content. When YouTube Shorts are detected, the app displays a fullscreen overlay to prevent you from watching them, helping you maintain focus and reduce screen time.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/35799ec6-92e7-4b02-be2d-874ecbb4bcd4) and start prompting.
+## Features
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Real-time detection** of YouTube Shorts content
+- **Automatic blocking** with a clean, non-intrusive overlay
+- **Smart detection** using multiple methods to identify Shorts content
+- **Auto-start capability** to maintain protection after device restart
+- **Low resource usage** with minimal battery impact
+- **Privacy-focused** - no data collection or transmission
 
-**Use your preferred IDE**
+## How It Works
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1. The app runs an Accessibility Service in the background to monitor the YouTube app
+2. When YouTube Shorts content is detected, an overlay is displayed
+3. The overlay disappears automatically when you leave the Shorts interface
+4. All processing happens locally on your device - no data is sent anywhere
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Installation
 
-Follow these steps:
+See [INSTALLATION.md](INSTALLATION.md) for detailed installation instructions.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Quick start:
+1. Install the app
+2. Grant Accessibility Service permission
+3. Grant Display Over Other Apps permission
+4. Toggle the protection switch to ON
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Requirements
 
-# Step 3: Install the necessary dependencies.
-npm i
+- Android 6.0 (Marshmallow) or higher
+- YouTube app installed
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+## Privacy
 
-**Edit a file directly in GitHub**
+YouTube Shorts Blocker respects your privacy. The app:
+- Does not collect any personal data
+- Does not transmit any information off your device
+- Only accesses the content necessary to detect Shorts
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Read our full [Privacy Policy](PRIVACY_POLICY.md) for more details.
 
-**Use GitHub Codespaces**
+## Contributing
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Contributions are welcome! See [CONTRIBUTION.md](CONTRIBUTION.md) for guidelines.
 
-## What technologies are used for this project?
+## License
 
-This project is built with:
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Support
 
-## How can I deploy this project?
+If you encounter any issues or have questions, please open an issue in this repository.
 
-Simply open [Lovable](https://lovable.dev/projects/35799ec6-92e7-4b02-be2d-874ecbb4bcd4) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+<p align="center">
+  <i>Your screen time, your control</i>
+</p>

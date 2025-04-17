@@ -1,0 +1,13 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="shield-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#6366F1" />
+    </linearGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <path fill="url(#shield-gradient)" d="M50,5 C66.6,12 83.3,12 100,5 L100,40 C100,65 83.3,90 50,95 C16.7,90 0,65 0,40 L0,5 C16.7,12 33.4,12 50,5 Z" />
+    <path fill="#FFF" d="M70,35 L40,65 L30,55 L36,49 L40,53 L64,29 L70,35 Z" />
+  </g>
+</svg>
