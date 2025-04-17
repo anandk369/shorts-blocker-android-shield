@@ -1,0 +1,5 @@
+
+<resources>
+    <string name="app_name">YouTube Shorts Blocker</string>
+    <string name="accessibility_service_description">This service detects YouTube Shorts content and blocks it with an overlay. It monitors the YouTube app to identify when Shorts are being played.</string>
+</resources>
