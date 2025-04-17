@@ -10,10 +10,16 @@ import androidx.annotation.RequiresApi
 object NotificationHelper {
     const val CHANNEL_ID = "shorts_blocker_channel"
     
-    @RequiresApi(Build.VERSION_CODES.O)
     fun createNotificationChannel(context: Context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            createNotificationChannelInternal(context)
+        }
+    }
+    
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createNotificationChannelInternal(context: Context) {
         val name = "YouTube Shorts Blocker"
-        val descriptionText = "Running in background to block YouTube Shorts"
+        val descriptionText = "Background service for blocking YouTube Shorts"
         val importance = NotificationManager.IMPORTANCE_LOW
         val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
             description = descriptionText

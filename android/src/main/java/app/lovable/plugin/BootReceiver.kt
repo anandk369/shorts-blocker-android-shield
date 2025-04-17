@@ -16,9 +16,7 @@ class BootReceiver : BroadcastReceiver() {
                 Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES
             )
             
-            if (enabledServices?.contains(
-                context.packageName + "/app.lovable.plugin.ShortsBlockerPlugin\$YoutubeShortsBlockerService"
-            ) == true) {
+            if (enabledServices != null && enabledServices.contains(context.packageName + "/app.lovable.plugin.ShortsBlockerPlugin\$YoutubeShortsBlockerService")) {
                 // Start our service
                 val serviceIntent = Intent(context, ShortsBlockerPlugin.YoutubeShortsBlockerService::class.java)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

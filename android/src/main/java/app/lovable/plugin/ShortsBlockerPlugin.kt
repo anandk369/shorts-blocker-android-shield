@@ -9,12 +9,8 @@ import android.content.pm.ServiceInfo
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
-import android.view.Gravity
-import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
-import android.widget.FrameLayout
-import android.widget.TextView
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import com.getcapacitor.JSObject
 import com.getcapacitor.Plugin
@@ -126,7 +122,6 @@ class ShortsBlockerPlugin : Plugin() {
             var isRunning = false
         }
 
-        private var windowManager: WindowManager? = null
         private lateinit var overlayManager: BlockerOverlayManager
         private var isYouTubeActive = false
         private var isShortsActive = false
@@ -134,13 +129,13 @@ class ShortsBlockerPlugin : Plugin() {
         override fun onCreate() {
             super.onCreate()
             isRunning = true
-            windowManager = getSystemService(WINDOW_SERVICE) as WindowManager
+            overlayManager = BlockerOverlayManager(this)
         }
 
         override fun onDestroy() {
             super.onDestroy()
             isRunning = false
-            removeOverlay()
+            overlayManager.hideOverlay()
         }
 
         override fun onServiceConnected() {
@@ -178,7 +173,7 @@ class ShortsBlockerPlugin : Plugin() {
             isYouTubeActive = packageName == "com.google.android.youtube"
 
             if (!isYouTubeActive) {
-                removeOverlay()
+                overlayManager.hideOverlay()
                 isShortsActive = false
                 return
             }
@@ -196,9 +191,9 @@ class ShortsBlockerPlugin : Plugin() {
                     isShortsActive = isCurrentlyInShorts
                     
                     if (isShortsActive) {
-                        showOverlay()
+                        overlayManager.showOverlay()
                     } else {
-                        removeOverlay()
+                        overlayManager.hideOverlay()
                     }
                 }
             }
@@ -247,14 +242,6 @@ class ShortsBlockerPlugin : Plugin() {
             }
 
             return false
-        }
-
-        private fun showOverlay() {
-            overlayManager.showOverlay()
-        }
-
-        private fun removeOverlay() {
-            overlayManager.hideOverlay()
         }
 
         override fun onInterrupt() {

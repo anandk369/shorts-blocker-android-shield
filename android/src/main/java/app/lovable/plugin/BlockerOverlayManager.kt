@@ -12,6 +12,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.TextView
+import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import android.os.Handler
 import android.os.Looper
@@ -20,63 +21,9 @@ class BlockerOverlayManager(private val context: Context) {
     private var windowManager: WindowManager? = null
     private var overlayView: View? = null
     private var isShowing = false
-    private lateinit var cardView: CardView
-    private lateinit var cardParams: FrameLayout.LayoutParams
     
     init {
         windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        
-        // Initialize card view
-        cardView = CardView(context).apply {
-            radius = 16f * context.resources.displayMetrics.density
-            setCardBackgroundColor(Color.parseColor("#8B5CF6")) // Purple color
-            elevation = 8f * context.resources.displayMetrics.density
-        }
-        
-        // Add content to the card
-        val cardContent = FrameLayout(context)
-        val padding = (24 * context.resources.displayMetrics.density).toInt()
-        cardContent.setPadding(padding, padding, padding, padding)
-        
-        // Add text to the card
-        val textView = TextView(context).apply {
-            text = "YouTube Shorts Blocked"
-            setTextColor(Color.WHITE)
-            textSize = 18f
-        }
-        
-        val textParams = FrameLayout.LayoutParams(
-            FrameLayout.LayoutParams.WRAP_CONTENT,
-            FrameLayout.LayoutParams.WRAP_CONTENT
-        )
-        textParams.gravity = Gravity.CENTER
-        cardContent.addView(textView, textParams)
-        
-        // Add the subtitle
-        val subtitleView = TextView(context).apply {
-            text = "Swipe away or exit Shorts to continue"
-            setTextColor(Color.WHITE)
-            alpha = 0.8f
-            textSize = 14f
-        }
-        
-        val subtitleParams = FrameLayout.LayoutParams(
-            FrameLayout.LayoutParams.WRAP_CONTENT,
-            FrameLayout.LayoutParams.WRAP_CONTENT
-        )
-        subtitleParams.gravity = Gravity.CENTER
-        subtitleParams.topMargin = (8 * context.resources.displayMetrics.density).toInt()
-        subtitleParams.topMargin += textView.height
-        cardContent.addView(subtitleView, subtitleParams)
-        
-        cardView.addView(cardContent)
-        
-        // Set up card params
-        cardParams = FrameLayout.LayoutParams(
-            FrameLayout.LayoutParams.WRAP_CONTENT,
-            FrameLayout.LayoutParams.WRAP_CONTENT
-        )
-        cardParams.gravity = Gravity.CENTER
     }
     
     fun showOverlay() {
@@ -95,12 +42,9 @@ class BlockerOverlayManager(private val context: Context) {
                 PixelFormat.TRANSLUCENT
             )
             
-            // Create the overlay container
-            val rootView = FrameLayout(context)
-            rootView.setBackgroundColor(Color.parseColor("#CC000000")) // Semi-transparent black
-            
-            // Add the card to the overlay
-            rootView.addView(cardView, cardParams)
+            // Inflate overlay layout
+            val inflater = LayoutInflater.from(context)
+            val rootView = inflater.inflate(R.layout.blocker_overlay, null) as FrameLayout
             
             // Show the overlay
             overlayView = rootView
@@ -112,6 +56,7 @@ class BlockerOverlayManager(private val context: Context) {
             overlayView?.animate()?.alpha(1f)?.setDuration(300)?.start()
             
             // Apply card animation
+            val cardView = rootView.findViewById<CardView>(R.id.blocker_card)
             cardView.scaleX = 0.9f
             cardView.scaleY = 0.9f
             cardView.alpha = 0f
